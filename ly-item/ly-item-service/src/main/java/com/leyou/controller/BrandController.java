@@ -26,7 +26,7 @@ public class BrandController {
 	) {
 		PageResult<Brand> brandPageResult = brandService.pageQuery(page,rows,sortBy,desc,key);
 		if (brandPageResult != null && null != brandPageResult.getItems() && brandPageResult.getItems().size() > 0) {
-			System.out.println("TESTTTTTTTTTT!!!!!!!!");
+			System.out.println("TEST!!!!!!!!");
 			return ResponseEntity.ok(brandPageResult);
 		}
 		return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
