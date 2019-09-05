@@ -44,4 +44,9 @@ public class BrandController {
 		}
 		return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
 	}
+	@GetMapping("bid/{b}")
+	public ResponseEntity<Brand> queryBrandById(@PathVariable("b") Long bid) {
+		Brand brand = brandService.queryBrandById(bid);
+		return ResponseEntity.ok(brand);
+	}
 }

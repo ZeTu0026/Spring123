@@ -4,6 +4,7 @@ import com.leyou.service.SearchService;
 import com.leyou.utils.SearchRequest;
 import com.leyou.utils.SearchResult;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -17,6 +18,9 @@ public class SearchController {
 	@PostMapping("page")
 	private ResponseEntity<SearchResult> page(@RequestBody SearchRequest searchRequest) {
 		SearchResult searchResult = searchService.page(searchRequest);
-		return null;
+		if (searchResult != null && searchResult.getItems().size()>0) {
+			return ResponseEntity.ok(searchResult);
+		}
+		return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
 	}
 }
