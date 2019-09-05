@@ -17,6 +17,7 @@ zuul:
   retryable: true
   routes:
     item-service: /item/** # 将商品微服务映射到/item/**
+    search-service: /search/**
 #http://192.168.228.1:10010/api/item/category/list?pid=0
 #zull 转发时更改ip和端口, 并且省略/api/item/路径
 #http://127.0.0.1:9081/category/list?pid=0
