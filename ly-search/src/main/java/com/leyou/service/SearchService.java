@@ -1,8 +1,8 @@
 package com.leyou.service;
 
-import com.leyou.clients.BrandClient;
-import com.leyou.clients.CategoryClient;
-import com.leyou.clients.SpecClient;
+import com.leyou.BrandClient;
+import com.leyou.CategoryClient;
+import com.leyou.SpecClient;
 import com.leyou.item.pojo.Brand;
 import com.leyou.item.pojo.Category;
 import com.leyou.item.pojo.SpecParam;
@@ -154,9 +154,9 @@ public class SearchService {
 			if (key != "cid3" && key != "brandId") {
 				key = "specs." + key + ".keyword";
 				//specs.电池容量（mAh）.keyword
-				//字符串类型，进行term查询
-				filterQueryBuilder.must(QueryBuilders.termQuery(key, value));
 			}
+			//字符串类型，进行term查询
+			filterQueryBuilder.must(QueryBuilders.termQuery(key, value));
 		}
 		//添加过滤条件
 		queryBuilder.filter(filterQueryBuilder);

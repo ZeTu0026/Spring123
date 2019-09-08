@@ -9,6 +9,7 @@
         <outputRelativeToContentRoot value="true" />
         <module name="ly-api-gateway" />
         <module name="ly-common" />
+        <module name="ly-goods-page" />
         <module name="ly-item-interface" />
         <module name="ly-item-service" />
         <module name="ly-registry" />

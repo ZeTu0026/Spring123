@@ -1,9 +1,9 @@
 package com.leyou.service;
 
 import com.fasterxml.jackson.core.type.TypeReference;
-import com.leyou.clients.CategoryClient;
-import com.leyou.clients.GoodsClient;
-import com.leyou.clients.SpecClient;
+import com.leyou.CategoryClient;
+import com.leyou.GoodsClient;
+import com.leyou.SpecClient;
 import com.leyou.common.utils.JsonUtils;
 import com.leyou.item.bo.SpuBo;
 import com.leyou.item.pojo.Sku;

@@ -137,4 +137,8 @@ public class GoodsService {
 		}
 		saveSkus(spuBo, spuBo.getSkus());
 	}
+
+	public Spu querySpuById(Long spuId) {
+		return spuMapper.selectByPrimaryKey(spuId);
+	}
 }

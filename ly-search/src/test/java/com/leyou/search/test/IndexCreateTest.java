@@ -1,7 +1,7 @@
 package com.leyou.search.test;
 
 import com.leyou.LySearchApplication;
-import com.leyou.clients.GoodsClient;
+import com.leyou.GoodsClient;
 import com.leyou.common.pojo.PageResult;
 import com.leyou.item.bo.SpuBo;
 import com.leyou.pojo.Goods;
