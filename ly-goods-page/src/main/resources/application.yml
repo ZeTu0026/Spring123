@@ -5,6 +5,11 @@ spring:
     name: goods-page
   thymeleaf:
     cache: false
+  rabbitmq:
+    host: 192.168.228.160
+    username: leyou
+    password: leyou
+    virtual-host: /leyou
 eureka:
   client:
     service-url:
@@ -17,4 +22,4 @@ eureka:
     instance-id: ${spring.application.name}.${server.port}
 ly:
   thymeleaf:
-    destPath: E:/develop/html/item  #/usr/local/nginx/html/item
+    destPath: E:/develop/html/item  #在nginx里部署后, 此路径改为/usr/local/nginx/html/item, 让其自己产生自己读取

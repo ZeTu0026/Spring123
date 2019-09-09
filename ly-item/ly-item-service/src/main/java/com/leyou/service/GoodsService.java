@@ -10,6 +10,7 @@ import com.leyou.mapper.SpuDetailMapper;
 import com.leyou.mapper.SpuMapper;
 import com.leyou.mapper.StockMapper;
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.amqp.core.AmqpTemplate;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -34,6 +35,8 @@ public class GoodsService {
 	private CategoryService categoryService;
 	@Autowired
 	private BrandService brandService;
+	@Autowired
+	private AmqpTemplate amqpTemplate;
 
 	public PageResult<SpuBo> querySpuByPage(Integer page, Integer rows,  Boolean saleable, String key) {
 		PageHelper.startPage(page,rows);
@@ -84,6 +87,12 @@ public class GoodsService {
 		spuDetailMapper.insertSelective(spuDetail);
 		List<Sku> skus = spuBo.getSkus();
 		saveSkus(spuBo, skus);
+		sendMessage(spuBo.getId(),"insert");
+	}
+
+	private void sendMessage(Long id, String type) {
+		amqpTemplate.convertAndSend("item." + type, id);
+		//item.insert 34534534
 	}
 
 	private void saveSkus(SpuBo spuBo, List<Sku> skus) {
@@ -136,6 +145,7 @@ public class GoodsService {
 			skuMapper.deleteByIdList(ids); /*删除sku*/
 		}
 		saveSkus(spuBo, spuBo.getSkus());
+		sendMessage(spuBo.getId(),"update");
 	}
 
 	public Spu querySpuById(Long spuId) {

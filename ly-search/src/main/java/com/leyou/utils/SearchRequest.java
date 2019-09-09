@@ -7,8 +7,8 @@ public class SearchRequest {
 	private  Integer page;//当前页
 	private Map<String,String> filter;
 
-	private  static  final  Integer DEFAULT_SIZE=20;
-	private  static  final  Integer DEFAULT_PAGE=1;
+	private static final Integer DEFAULT_SIZE = 20;
+	private static final Integer DEFAULT_PAGE = 1;
 
 	public String getKey() {
 		return key;

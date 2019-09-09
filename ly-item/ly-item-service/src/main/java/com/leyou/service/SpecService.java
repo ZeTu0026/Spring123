@@ -19,7 +19,17 @@ public class SpecService {
 	public List<SpecGroup> querySpecGroups(Long cid) {
 		SpecGroup specGroup = new SpecGroup();
 		specGroup.setCid(cid);
-		return specGroupMapper.select(specGroup);
+		List<SpecGroup> specGroups = specGroupMapper.select(specGroup);
+		for (SpecGroup s:specGroups) {
+			//1	76	主体
+			SpecParam specParam = new SpecParam();
+			specParam.setGroupId(s.getId());
+			//select * from tb_spec_param m where m.group_id=1;
+			List<SpecParam> specParamList = specParamMapper.select(specParam);
+			s.setSpecParams(specParamList);
+		}
+
+		return specGroups;
 		//select * from spec_group where cid="76"
 	}
 

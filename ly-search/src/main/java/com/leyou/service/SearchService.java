@@ -1,8 +1,8 @@
 package com.leyou.service;
 
-import com.leyou.BrandClient;
-import com.leyou.CategoryClient;
-import com.leyou.SpecClient;
+import com.leyou.clients.BrandClient;
+import com.leyou.clients.CategoryClient;
+import com.leyou.clients.SpecClient;
 import com.leyou.item.pojo.Brand;
 import com.leyou.item.pojo.Category;
 import com.leyou.item.pojo.SpecParam;

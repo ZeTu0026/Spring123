@@ -28,6 +28,6 @@ public interface GoodsApi {
 	SpuDetail querySpuDetailBySpuId(@PathVariable("spuId") Long id);
 
 	@GetMapping("spu/{id}")
-	public Spu querySpuById(@PathVariable("id") Long spuId);
+	Spu querySpuById(@PathVariable("id") Long spuId);
 	//http://item-service/spu/113
 }

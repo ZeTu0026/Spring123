@@ -1,15 +1,17 @@
 package com.leyou.service;
 
 import com.fasterxml.jackson.core.type.TypeReference;
-import com.leyou.CategoryClient;
-import com.leyou.GoodsClient;
-import com.leyou.SpecClient;
+import com.leyou.clients.CategoryClient;
+import com.leyou.clients.GoodsClient;
+import com.leyou.clients.SpecClient;
 import com.leyou.common.utils.JsonUtils;
 import com.leyou.item.bo.SpuBo;
 import com.leyou.item.pojo.Sku;
 import com.leyou.item.pojo.SpecParam;
+import com.leyou.item.pojo.Spu;
 import com.leyou.item.pojo.SpuDetail;
 import com.leyou.pojo.Goods;
+import com.leyou.repository.GoodsRepository;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.math.NumberUtils;
 import org.springframework.beans.BeanUtils;
@@ -26,6 +28,8 @@ public class IndexService {
 	private GoodsClient goodsClient;
 	@Autowired
 	private SpecClient specClient;
+	@Autowired
+	private GoodsRepository goodsRepository;
 
 	private String chooseSegment(String value, SpecParam p) {
 		double val = NumberUtils.toDouble(value);
@@ -109,5 +113,17 @@ public class IndexService {
 		}
 		goods.setSpecs(specs);
 		return goods;
+	}
+
+	public void createIndex(Long id) {
+		Spu spu = goodsClient.querySpuById(id);
+		SpuBo spuBo = new SpuBo();
+		BeanUtils.copyProperties(spu, spuBo);
+		Goods goods = buildGoods(spuBo);
+		goodsRepository.save(goods);
+	}
+
+	public void deleteIndex(Long id) {
+		goodsRepository.deleteById(id);
 	}
 }

@@ -35,7 +35,7 @@ public class FileService {
 		createHtml(spuId);
 	}
 
-	private void createHtml(Long spuId) {
+	public void createHtml(Long spuId) {
 		//113.html
 		Context context = new Context();
 		context.setVariables(this.pageService.loadData(spuId));
@@ -46,6 +46,13 @@ public class FileService {
 			templateEngine.process("item",context,writer);
 		} catch (Exception e) {
 			e.printStackTrace();
+		}
+	}
+
+	public void deleteHtml(Long id) {
+		File file = new File(destPath, id + ".html");
+		if (file.exists()) {
+			file.delete();
 		}
 	}
 }
