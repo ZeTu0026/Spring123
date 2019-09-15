@@ -18,6 +18,10 @@ zuul:
   routes:
     item-service: /item/** # 将商品微服务映射到/item/**
     search-service: /search/**
+    user-service: /user/**
+    auth-service: /auth/**
+  add-host-header: true #携带本身头的信息
+  sensitive-headers:   #敏感头过滤失效
 #http://192.168.228.1:10010/api/item/category/list?pid=0
 #zull 转发时更改ip和端口, 并且省略/api/item/路径
 #http://127.0.0.1:9081/category/list?pid=0
@@ -35,3 +39,15 @@ hystrix:
         isolation:
           thread:
             timeoutInMillisecond: 10000 # 熔断超时时长：10000ms
+ly:
+  jwt:
+    pubKeyPath: D:/rsa/rsa.pub # 公钥地址
+    cookieName: LY_TOKEN # cookie的名称
+  filter:
+    allowPaths: #白名单
+    - /api/auth
+    - /api/search
+    - /api/item
+    - /api/usr/register
+    - /api/user/check
+    - /api/user/code
