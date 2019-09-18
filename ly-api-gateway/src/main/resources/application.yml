@@ -20,6 +20,8 @@ zuul:
     search-service: /search/**
     user-service: /user/**
     auth-service: /auth/**
+    cart-service: /cart/**
+    order-service: /order/**
   add-host-header: true #携带本身头的信息
   sensitive-headers:   #敏感头过滤失效
 #http://192.168.228.1:10010/api/item/category/list?pid=0
